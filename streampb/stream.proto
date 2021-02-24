@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package streampb;
+
+message StreamRequest {
+  string type = 1;
+  string payload = 3;
+}
+
+message StreamResponse {
+  int32 code = 1;
+  string status = 3;
+  string payload = 5;
+}
+
+service StreamService {
+  rpc SubscribeToEvent (stream StreamRequest) returns (stream StreamResponse);
+}
